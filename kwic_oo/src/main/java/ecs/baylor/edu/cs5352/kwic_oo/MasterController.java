@@ -9,6 +9,7 @@ import ecs.baylor.edu.cs5352.kwic_oo.interfaces.IAlphabetize;
 import ecs.baylor.edu.cs5352.kwic_oo.interfaces.ICharacterShift;
 import ecs.baylor.edu.cs5352.kwic_oo.interfaces.IInput;
 import ecs.baylor.edu.cs5352.kwic_oo.interfaces.IOutput;
+import lombok.AllArgsConstructor;
 
 /**
  * Runs the object-oriented KWIC algorithm.
@@ -17,15 +18,21 @@ import ecs.baylor.edu.cs5352.kwic_oo.interfaces.IOutput;
  * @author Michael
  *
  */
+@AllArgsConstructor
 public class MasterController {
-	public void kwic(IInput in, ICharacterShift cs, IAlphabetize a, IOutput out) {
+	private IInput in;
+	private ICharacterShift cs;
+	private IAlphabetize a;
+	private IOutput out;
+
+	public void kwic() {
 		Lines lines = in.readInput();
 		lines = cs.shiftInput(lines);
 		a.alphabetize(lines);
 		out.output(lines);
 	}
-	
+
 	public static void main(String[] args) {
-		new MasterController().kwic(new Input(), new CircularShift(), new Alphabetizer(), new Output());
+		new MasterController(new Input(), new CircularShift(), new Alphabetizer(), new Output()).kwic();
 	}
 }
