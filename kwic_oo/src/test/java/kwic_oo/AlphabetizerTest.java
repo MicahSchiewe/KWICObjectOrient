@@ -16,7 +16,7 @@ import ecs.baylor.edu.cs5352.kwic_oo.impl.Lines;
 class AlphabetizerTest {
 
 	@ParameterizedTest
-	@MethodSource("provider")
+	@MethodSource("alphabetizerTestProvider")
 	void test(List<String> lines, List<String> results) {
 		Alphabetizer a = new Alphabetizer();
 		Lines l = new Lines(lines);
@@ -24,7 +24,7 @@ class AlphabetizerTest {
 		assertEquals(l.getLines(), results);
 	}
 
-	public static Stream<Arguments> provider() {
+	public static Stream<Arguments> alphabetizerTestProvider() {
 		return Stream.of(Arguments.of(asList("b", "a", "c"), List.of("a", "b", "c")),
 				Arguments.of(asList(), List.of()),
 				Arguments.of(asList("ab", "aa"), List.of("aa", "ab")),

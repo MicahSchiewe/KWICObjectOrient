@@ -16,7 +16,7 @@ import ecs.baylor.edu.cs5352.kwic_oo.impl.Lines;
 class CircularShiftTest {
 
 	@ParameterizedTest
-	@MethodSource("provider")
+	@MethodSource("circularShiftProvider")
 	void test(List<String> lines, List<String> results) {
 		CircularShift cs = new CircularShift();
 		Lines l = cs.shiftInput(new Lines(lines));
@@ -25,7 +25,7 @@ class CircularShiftTest {
 		assertEquals(l.getLines(), results);
 	}
 
-	public static Stream<Arguments> provider() {
+	public static Stream<Arguments> circularShiftProvider() {
 		return Stream.of(Arguments.of(asList(""), asList("")), Arguments.of(asList(), asList()),
 				Arguments.of(asList("Hello world!", "This is a test", "mahboi"),
 						asList("Hello world!", "world! Hello", "This is a test", "is a test This", "a test This is",
